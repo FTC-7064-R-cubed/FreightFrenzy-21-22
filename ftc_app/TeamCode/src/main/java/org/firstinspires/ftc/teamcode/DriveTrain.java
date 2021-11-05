@@ -5,8 +5,12 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
+/**
+ * Created by Lucas Botbol 11/5
+ */
+
 @TeleOp
-public class MecanumTeleOp extends LinearOpMode {
+public class DriveTrain extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
         // Declare our motors
