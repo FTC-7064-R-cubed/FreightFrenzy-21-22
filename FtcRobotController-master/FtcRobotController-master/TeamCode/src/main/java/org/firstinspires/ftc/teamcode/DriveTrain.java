@@ -33,6 +33,21 @@ public class DriveTrain extends LinearOpMode {
             double y = -gamepad1.left_stick_y; // Remember, this is reversed!
             double x = gamepad1.left_stick_x * 1.1; // Counteract imperfect strafing
             double rx = gamepad1.right_stick_x;
+            double lt = gamepad1.left_trigger;
+            double rt = gamepad1.right_trigger;
+
+            if(lt>0.1){
+                motorFrontLeft.setPower(-lt);
+                motorBackLeft.setPower(-lt);
+                motorFrontRight.setPower(-lt);
+                motorBackRight.setPower(-lt);
+            }
+            if(rt>0.1){
+                motorFrontLeft.setPower(rt);
+                motorBackLeft.setPower(rt);
+                motorFrontRight.setPower(rt);
+                motorBackRight.setPower(rt);
+            }
 
             // Denominator is the largest motor power (absolute value) or 1
             // This ensures all the powers maintain the same ratio, but only when
@@ -47,6 +62,6 @@ public class DriveTrain extends LinearOpMode {
             motorBackLeft.setPower(backLeftPower);
             motorFrontRight.setPower(frontRightPower);
             motorBackRight.setPower(backRightPower);
-        }
+        }+
     }
 }
