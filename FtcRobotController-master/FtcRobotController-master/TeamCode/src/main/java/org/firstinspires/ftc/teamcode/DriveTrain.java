@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 /**
- * Created by Lucas Botbol 11/5
+ * Created by Lucas Botbol
  */
 
 @TeleOp
