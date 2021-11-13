@@ -19,6 +19,7 @@ public class DriveTrain extends LinearOpMode {
         DcMotor motorBackLeft = hardwareMap.dcMotor.get("mbl");
         DcMotor motorFrontRight = hardwareMap.dcMotor.get("mfr");
         DcMotor motorBackRight = hardwareMap.dcMotor.get("mbr");
+        DcMotor carrousel = hardwareMap.dcMotor.get("mc") ;
 
         // Reverse the right side motors
         // Reverse left motors if you are using NeveRests
@@ -30,11 +31,22 @@ public class DriveTrain extends LinearOpMode {
         if (isStopRequested()) return;
 
         while (opModeIsActive()) {
+
             double y = -gamepad1.left_stick_y; // Remember, this is reversed!
             double x = gamepad1.left_stick_x * 1.1; // Counteract imperfect strafing
             double rx = gamepad1.right_stick_x;
             double lt = gamepad1.left_trigger;
             double rt = gamepad1.right_trigger;
+
+            if(gamepad1.x){
+                carrousel.setPower(1);
+            }
+            if(gamepad1.y){
+                carrousel.setPower(-1);
+            }
+            if(gamepad1.b){
+                carrousel.setPower(0);
+            }
 
             if(lt>0.1){
                 motorFrontLeft.setPower(-lt);
@@ -62,6 +74,6 @@ public class DriveTrain extends LinearOpMode {
             motorBackLeft.setPower(backLeftPower);
             motorFrontRight.setPower(frontRightPower);
             motorBackRight.setPower(backRightPower);
-        }+
+        }
     }
 }
