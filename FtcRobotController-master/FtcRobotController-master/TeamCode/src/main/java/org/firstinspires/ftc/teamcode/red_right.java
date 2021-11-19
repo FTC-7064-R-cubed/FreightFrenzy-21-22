@@ -82,7 +82,9 @@ public class red_right extends LinearOpMode{
         waitForStart();
 
 //        Now over here write and edit a couple of times the drive function to make it go to the warehouse
+//        What need to do is figure out what position and configuration of variables within drive to make it go fully into the warehouse
 //        Example: drive(0.4, 4, 4);
+
 
 
     }
