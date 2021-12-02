@@ -39,10 +39,10 @@ public class DriveTrain extends LinearOpMode {
             double rt = gamepad1.right_trigger;
 
             if(gamepad1.x){
-                carrousel.setPower(1);
+                carrousel.setPower(.9);
             }
             if(gamepad1.y){
-                carrousel.setPower(-1);
+                carrousel.setPower(-.9);
             }
             if(gamepad1.b){
                 carrousel.setPower(0);

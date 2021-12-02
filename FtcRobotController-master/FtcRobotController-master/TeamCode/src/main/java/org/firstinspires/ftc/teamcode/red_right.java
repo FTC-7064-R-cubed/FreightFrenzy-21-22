@@ -11,7 +11,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 // Make it park fully into the warehouse from the side closest to the warehouse in the red side
 
 @Autonomous(name = "red_right")
-public class red_right extends LinearOpMode{
+public class red_right extends LinearOpMode {
     private DcMotor motorFrontLeft;
     private DcMotor motorBackLeft;
     private DcMotor motorFrontRight;
@@ -26,19 +26,24 @@ public class red_right extends LinearOpMode{
     static final double DRIVE_COUNTS_PER_IN = DRIVE_COUNTS_PER_MM * 25.4;
 
     //Create elapsed time variable and an instance of elapsed time
-    private ElapsedTime     runtime = new ElapsedTime();
+    private ElapsedTime runtime = new ElapsedTime();
 
     private void drive(double power, double leftInches, double rightInches) {
-        int FrightTarget;
-        int BrightTarget;
-        int FleftTarget;
-        int BleftTarget;
+        DcMotor motorFrontLeft = hardwareMap.dcMotor.get("mfl");
+        DcMotor motorBackLeft = hardwareMap.dcMotor.get("mbl");
+        DcMotor motorFrontRight = hardwareMap.dcMotor.get("mfr");
+        DcMotor motorBackRight = hardwareMap.dcMotor.get("mbr");
+
+        int FrightTarget = 0;
+        int BrightTarget = 0;
+        int FleftTarget = 0;
+        int BleftTarget = 0;
         if (opModeIsActive()) {
             // Create target positions
-            FrightTarget = motorFrontRight.getCurrentPosition() + (int)(rightInches * DRIVE_COUNTS_PER_IN);
-            BrightTarget = motorBackRight.getCurrentPosition() + (int)(rightInches * DRIVE_COUNTS_PER_IN);
-            FleftTarget = motorFrontLeft.getCurrentPosition() + (int)(leftInches * DRIVE_COUNTS_PER_IN);
-            BleftTarget = motorBackLeft.getCurrentPosition() + (int)(leftInches * DRIVE_COUNTS_PER_IN);
+            FrightTarget = motorFrontRight.getCurrentPosition() + (int) (rightInches * DRIVE_COUNTS_PER_IN);
+            BrightTarget = motorBackRight.getCurrentPosition() + (int) (rightInches * DRIVE_COUNTS_PER_IN);
+            FleftTarget = motorFrontLeft.getCurrentPosition() + (int) (leftInches * DRIVE_COUNTS_PER_IN);
+            BleftTarget = motorBackLeft.getCurrentPosition() + (int) (leftInches * DRIVE_COUNTS_PER_IN);
 
             // set target position
             motorBackLeft.setTargetPosition(BleftTarget);
@@ -53,6 +58,7 @@ public class red_right extends LinearOpMode{
             motorFrontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
             //run to position at the desiginated power
+
             motorBackLeft.setPower(power);
             motorFrontLeft.setPower(power);
             motorBackRight.setPower(power);
@@ -77,14 +83,31 @@ public class red_right extends LinearOpMode{
         DcMotor motorBackLeft = hardwareMap.dcMotor.get("mbl");
         DcMotor motorFrontRight = hardwareMap.dcMotor.get("mfr");
         DcMotor motorBackRight = hardwareMap.dcMotor.get("mbr");
-        DcMotor carrousel = hardwareMap.dcMotor.get("mc") ;
+        DcMotor carrousel = hardwareMap.dcMotor.get("mc");
+
+        motorFrontLeft.setDirection(DcMotorSimple.Direction.REVERSE);
+        motorBackLeft.setDirection(DcMotorSimple.Direction.REVERSE);
+
 
         waitForStart();
+        if (opModeIsActive()) {
+
+            //segment 1
+            drive(0.9, 65, 65);
+            runtime.reset();
+            while (opModeIsActive() && runtime.seconds() <= 7) {
+
+                //lift arm and hold
+                carrousel.setTargetPosition(720);
+                carrousel.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                carrousel.setPower(0.8);
+
+            }
+        }
 
 //        Now over here write and edit a couple of times the drive function to make it go to the warehouse
 //        What need to do is figure out what position and configuration of variables within drive to make it go fully into the warehouse
-//        Example: drive(0.4, 4, 4);
-
+//        Example: drive(0.4, 4, 4)
 
 
     }
