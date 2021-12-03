@@ -95,14 +95,14 @@ public class red_right extends LinearOpMode {
             //segment 1
             drive(0.9, 65, 65);
             runtime.reset();
-            while (opModeIsActive() && runtime.seconds() <= 7) {
-
-                //lift arm and hold
-                carrousel.setTargetPosition(720);
-                carrousel.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-                carrousel.setPower(0.8);
-
-            }
+//            while (opModeIsActive() && runtime.seconds() <= 7) {
+//
+//                //lift arm and hold
+//                carrousel.setTargetPosition(720);
+//                carrousel.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+//                carrousel.setPower(0.8);
+//
+//            }
         }
 
 //        Now over here write and edit a couple of times the drive function to make it go to the warehouse
